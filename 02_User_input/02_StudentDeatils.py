@@ -1,0 +1,10 @@
+id=int(input("Enter Roll NO :: "))
+name=input("Enter NAme :: ")
+course=input("Enter COurse Name :: ")
+marks=float(input("Enter MArks :: "))
+
+print("========================================")
+print("ID is :: ",id)
+print("Name is :: ",name)
+print("Course is :: ",course)
+print("marks is :: ",marks)
