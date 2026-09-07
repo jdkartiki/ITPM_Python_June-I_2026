@@ -1,0 +1,935 @@
+Duck Typing (in detail)
+
+Duck typing is a concept in dynamic programming languages (like Python) where the type or class of an object is less important than the methods or behaviors it defines.
+
+The name comes from the famous phrase:
+
+“If it walks like a duck and quacks like a duck, then it must be a duck.”
+
+In programming terms:
+
+You don’t check an object’s type explicitly.
+You just use the object, assuming it has the required methods/attributes.
+If it behaves correctly → it works.
+If not → you get a runtime error.
+
+
+🔍 Key Characteristics
+No need for inheritance or interfaces.
+Focus on behavior, not type.
+Common in dynamically typed languages like Python.
+Promotes flexibility and polymorphism.
+
+
+🧠 Simple Example
+class Duck:
+    def speak(self):
+        print("Quack!")
+
+class Dog:
+    def speak(self):
+        print("Bark!")
+
+def make_sound(animal):
+    animal.speak()
+
+make_sound(Duck())
+make_sound(Dog())
+
+👉 Both objects work because they have a speak() method — not because they share a parent class.
+
+
+=============================================================================================
+
+Alright, let’s strip it down to the simplest possible way 👇
+
+---
+
+## 🦆 Duck Typing (Very Simple)
+
+**Duck typing means:**
+👉 *We don’t care what the object is.*
+👉 *We only care what it can do.*
+
+---
+
+### 💡 Easy Definition
+
+If an object has the **method you need**, you can use it.
+
+---
+
+### 🧠 Real-Life Example
+
+You don’t care if it’s:
+
+* a **pen**
+* a **pencil**
+
+If it **can write**, you use it ✍️
+
+---
+
+### 💻 Super Simple Code Example
+
+```python
+class Pen:
+    def write(self):
+        print("Writing with pen")
+
+class Pencil:
+    def write(self):
+        print("Writing with pencil")
+
+def start_writing(tool):
+    tool.write()
+
+start_writing(Pen())
+start_writing(Pencil())
+```
+
+👉 Both work because both have `write()`
+👉 We never check type like `Pen` or `Pencil`
+
+---
+
+### 🚫 What Duck Typing DOESN’T do
+
+```python
+if type(obj) == Pen:
+    ...
+```
+
+❌ This is NOT duck typing
+
+---
+
+### ✅ What Duck Typing DOES
+
+```python
+obj.write()
+```
+
+✔ Just use it!
+
+---
+
+## 🔑 One-Line Rule
+
+👉 **"If it works like what I need, I will use it."**
+
+---
+
+## ⚠️ Small Problem
+
+If object doesn’t have the method:
+
+```python
+obj.write()
+```
+
+👉 It will crash (error)
+
+---
+
+## 🧃 Tiny Example
+
+```python
+def add(a, b):
+    return a + b
+
+print(add(2, 3))        # numbers
+print(add("Hi ", "You")) # strings
+```
+
+👉 Same function works for different types
+👉 Because `+` works for both
+
+---
+
+## ✅ Final Simple Summary
+
+* No type checking
+* Just use the object
+* Works if method exists
+* Fails if method missing
+
+---
+
+If you want, I can make:
+
+* 5 **super easy practice questions**
+* or a **cheat sheet for exams** 👍
+
+
+
+
+==========================================================================================
+### 🦆 Duck Typing (in detail)
+
+**Duck typing** is a concept in dynamic programming languages (like Python) where the **type or class of an object is less important than the methods or behaviors it defines**.
+
+The name comes from the famous phrase:
+
+> *“If it walks like a duck and quacks like a duck, then it must be a duck.”*
+
+In programming terms:
+
+* You don’t check an object’s type explicitly.
+* You just **use the object**, assuming it has the required methods/attributes.
+* If it behaves correctly → it works.
+* If not → you get a runtime error.
+
+---
+
+### 🔍 Key Characteristics
+
+* No need for inheritance or interfaces.
+* Focus on **behavior, not type**.
+* Common in dynamically typed languages like Python.
+* Promotes flexibility and polymorphism.
+
+---
+
+### 🧠 Simple Example
+
+```python
+class Duck:
+    def speak(self):
+        print("Quack!")
+
+class Dog:
+    def speak(self):
+        print("Bark!")
+
+def make_sound(animal):
+    animal.speak()
+
+make_sound(Duck())
+make_sound(Dog())
+```
+
+👉 Both objects work because they have a `speak()` method — **not because they share a parent class**.
+
+---
+
+## 💻 10 Duck Typing Programs
+
+---
+
+### 1. Basic Method Sharing
+
+```python
+class Cat:
+    def sound(self):
+        print("Meow")
+
+class Cow:
+    def sound(self):
+        print("Moo")
+
+def animal_sound(animal):
+    animal.sound()
+
+animal_sound(Cat())
+animal_sound(Cow())
+```
+
+---
+
+### 2. File-like Objects
+
+```python
+class File:
+    def read(self):
+        return "Reading file"
+
+class Network:
+    def read(self):
+        return "Reading from network"
+
+def read_data(source):
+    print(source.read())
+
+read_data(File())
+read_data(Network())
+```
+
+---
+
+### 3. Different Classes, Same Method Name
+
+```python
+class Car:
+    def move(self):
+        print("Car drives")
+
+class Bird:
+    def move(self):
+        print("Bird flies")
+
+def start(obj):
+    obj.move()
+
+start(Car())
+start(Bird())
+```
+
+---
+
+### 4. Using Built-in Types
+
+```python
+def get_length(item):
+    return len(item)
+
+print(get_length("Hello"))
+print(get_length([1, 2, 3]))
+```
+
+---
+
+### 5. Operator Duck Typing
+
+```python
+def add(a, b):
+    return a + b
+
+print(add(10, 20))
+print(add("Hello ", "World"))
+```
+
+---
+
+### 6. Iterable Duck Typing
+
+```python
+def print_items(items):
+    for i in items:
+        print(i)
+
+print_items([1, 2, 3])
+print_items((4, 5, 6))
+```
+
+---
+
+### 7. Context Manager Style
+
+```python
+class Demo:
+    def __enter__(self):
+        print("Enter")
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print("Exit")
+
+def use(obj):
+    with obj:
+        print("Inside block")
+
+use(Demo())
+```
+
+---
+
+### 8. Custom Object with Same Interface
+
+```python
+class Email:
+    def send(self):
+        print("Sending Email")
+
+class SMS:
+    def send(self):
+        print("Sending SMS")
+
+def notify(service):
+    service.send()
+
+notify(Email())
+notify(SMS())
+```
+
+---
+
+### 9. Multiple Behaviors
+
+```python
+class Pen:
+    def write(self):
+        print("Writing with pen")
+
+class Keyboard:
+    def write(self):
+        print("Typing on keyboard")
+
+def write_something(tool):
+    tool.write()
+
+write_something(Pen())
+write_something(Keyboard())
+```
+
+---
+
+### 10. Mixed Objects in List
+
+```python
+class A:
+    def show(self):
+        print("Class A")
+
+class B:
+    def show(self):
+        print("Class B")
+
+objects = [A(), B()]
+
+for obj in objects:
+    obj.show()
+```
+
+---
+
+## ⚖️ Advantages
+
+* Flexible and concise code
+* Encourages polymorphism
+* Less boilerplate (no strict inheritance needed)
+
+---
+
+## ⚠️ Disadvantages
+
+* Errors appear at runtime (not compile-time)
+* Harder to debug in large systems
+* Less explicit structure
+
+---
+=====================================================================================
+
+
+Got it — I’ll keep it **simple**, but give you **real-life style examples + clear programs** so it actually makes sense.
+
+---
+
+# 🦆 Duck Typing (Simple + Real-Life Thinking)
+
+👉 **Meaning:**
+We don’t check the type (class).
+We just check: *“Can it do the job?”*
+
+---
+
+# 💻 10 Duck Typing Examples (with Real-Life Meaning)
+
+---
+
+## 1. 🖊 Writing Tool (Pen / Pencil)
+
+**Real life:** Anything that can write is fine.
+
+```python
+class Pen:
+    def write(self):
+        print("Writing with Pen")
+
+class Pencil:
+    def write(self):
+        print("Writing with Pencil")
+
+def start(tool):
+    tool.write()
+
+start(Pen())
+start(Pencil())
+```
+
+👉 Both work because both can `write()`
+
+---
+
+## 2. 🔊 Speaker / Phone (Play Sound)
+
+**Real life:** Anything that can play music works.
+
+```python
+class Speaker:
+    def play(self):
+        print("Playing on Speaker")
+
+class Phone:
+    def play(self):
+        print("Playing on Phone")
+
+def start_music(device):
+    device.play()
+
+start_music(Speaker())
+start_music(Phone())
+```
+
+---
+
+## 3. 🚗 Car / Bike (Start Engine)
+
+**Real life:** Any vehicle that can start.
+
+```python
+class Car:
+    def start(self):
+        print("Car started")
+
+class Bike:
+    def start(self):
+        print("Bike started")
+
+def start_vehicle(v):
+    v.start()
+
+start_vehicle(Car())
+start_vehicle(Bike())
+```
+
+---
+
+## 4. 📧 Email / SMS (Send Message)
+
+**Real life:** Any service that can send message.
+
+```python
+class Email:
+    def send(self):
+        print("Sending Email")
+
+class SMS:
+    def send(self):
+        print("Sending SMS")
+
+def notify(service):
+    service.send()
+
+notify(Email())
+notify(SMS())
+```
+
+---
+
+## 5. 🧾 File / API (Read Data)
+
+**Real life:** Data can come from anywhere.
+
+```python
+class File:
+    def read(self):
+        return "Reading from file"
+
+class API:
+    def read(self):
+        return "Reading from API"
+
+def get_data(source):
+    print(source.read())
+
+get_data(File())
+get_data(API())
+```
+
+---
+
+## 6. 🧍‍♂️ Teacher / YouTube (Teach)
+
+**Real life:** Learning from teacher or online.
+
+```python
+class Teacher:
+    def teach(self):
+        print("Teaching in classroom")
+
+class YouTube:
+    def teach(self):
+        print("Teaching online")
+
+def learn(source):
+    source.teach()
+
+learn(Teacher())
+learn(YouTube())
+```
+
+---
+
+## 7. 🍔 Swiggy / Zomato (Deliver Food)
+
+**Real life:** Any delivery app works.
+
+```python
+class Swiggy:
+    def deliver(self):
+        print("Food delivered by Swiggy")
+
+class Zomato:
+    def deliver(self):
+        print("Food delivered by Zomato")
+
+def order(app):
+    app.deliver()
+
+order(Swiggy())
+order(Zomato())
+```
+
+---
+
+## 8. 💳 Credit Card / UPI (Pay Money)
+
+**Real life:** Any payment method is fine.
+
+```python
+class CreditCard:
+    def pay(self):
+        print("Paid using Credit Card")
+
+class UPI:
+    def pay(self):
+        print("Paid using UPI")
+
+def make_payment(method):
+    method.pay()
+
+make_payment(CreditCard())
+make_payment(UPI())
+```
+
+---
+
+## 9. 📦 Amazon / Flipkart (Place Order)
+
+**Real life:** Any shopping platform.
+
+```python
+class Amazon:
+    def order(self):
+        print("Order placed on Amazon")
+
+class Flipkart:
+    def order(self):
+        print("Order placed on Flipkart")
+
+def shop(site):
+    site.order()
+
+shop(Amazon())
+shop(Flipkart())
+```
+
+---
+
+## 10. 🧹 Robot / Human (Clean Room)
+
+**Real life:** Anyone who can clean works.
+
+```python
+class Robot:
+    def clean(self):
+        print("Robot cleaning")
+
+class Human:
+    def clean(self):
+        print("Human cleaning")
+
+def clean_room(helper):
+    helper.clean()
+
+clean_room(Robot())
+clean_room(Human())
+```
+
+---
+
+# 🎯 Final Understanding (Very Clear)
+
+👉 You NEVER do:
+
+```python
+if type(obj) == Something:
+```
+
+👉 You ALWAYS do:
+
+```python
+obj.method()
+```
+
+---
+
+# 🔑 Golden Rule
+
+👉 **"If it can do the job, I will use it."**
+
+---
+
+# ⚠️ Important Note
+
+If object doesn’t have method:
+
+```python
+obj.clean()
+```
+
+👉 ❌ Program will crash
+
+---
+
+=============================================PROJECTS OOPS ===========================================
+
+class Book:
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+        self.is_issued = False
+
+    def __str__(self):
+        status = "Issued" if self.is_issued else "Available"
+        return f"{self.title} by {self.author} - {status}"
+
+
+class Library:
+    def __init__(self):
+        self.books = []
+
+    def add_book(self, book):
+        self.books.append(book)
+
+    def issue_book(self, title):
+        for book in self.books:
+            if book.title == title and not book.is_issued:
+                book.is_issued = True
+                print(f"{title} issued successfully")
+                return
+        print("Book not available")
+
+    def return_book(self, title):
+        for book in self.books:
+            if book.title == title and book.is_issued:
+                book.is_issued = False
+                print(f"{title} returned successfully")
+                return
+        print("Invalid return")
+
+    def display_books(self):
+        for book in self.books:
+            print(book)
+
+
+# Usage
+lib = Library()
+lib.add_book(Book("Python Basics", "John"))
+lib.add_book(Book("OOP Concepts", "Smith"))
+
+lib.display_books()
+lib.issue_book("Python Basics")
+lib.display_books()
+
+
+
+
+=============================
+class Account:
+    def __init__(self, name, balance):
+        self.name = name
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
+        print(f"Deposited: {amount}")
+
+    def withdraw(self, amount):
+        if amount <= self.balance:
+            self.balance -= amount
+            print(f"Withdrawn: {amount}")
+        else:
+            print("Insufficient balance")
+
+    def show_balance(self):
+        print(f"Balance: {self.balance}")
+
+
+class SavingsAccount(Account):
+    def __init__(self, name, balance):
+        super().__init__(name, balance)
+
+    def withdraw(self, amount):
+        if amount > 10000:
+            print("Error ::: Withdrawal limit exceeded")
+        else:
+            super().withdraw(amount)
+
+
+# Usage
+acc = SavingsAccount("Alice", 20000)
+
+acc.deposit(5000)
+acc.show_balance()
+acc.withdraw(15000)   # limit check
+acc.withdraw(5000)
+acc.show_balance()
+
+======================================
+class Product:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+
+class Cart:
+    def __init__(self):
+        self.items = []
+
+    def add_product(self, product):
+        self.items.append(product)
+        print(f"{product.name} added to cart")
+
+    def remove_product(self, name):
+        for item in self.items:
+            if item.name == name:
+                self.items.remove(item)
+                print(f"{name} removed")
+                return
+        print("Product not found")
+
+    def calculate_total(self):
+        total = sum(item.price for item in self.items)
+        print(f"Total: {total}")
+
+    def show_cart(self):
+        for item in self.items:
+            print(f"{item.name} - {item.price}")
+
+
+# Usage
+cart = Cart()
+p1 = Product("Laptop", 50000)
+p2 = Product("Mouse", 500)
+
+cart.add_product(p1)
+cart.add_product(p2)
+cart.show_cart()
+cart.calculate_total()
+
+
+=========================
+
+class FoodItem:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+
+class Order:
+    def __init__(self):
+        self.items = []
+
+    def add_item(self, item):
+        self.items.append(item)
+
+    def show_bill(self):
+        total = 0
+        print("\nYour Order:")
+        for item in self.items:
+            print(f"{item.name} - {item.price}")
+            total += item.price
+        print("Total Bill:", total)
+
+
+# Menu
+menu = {
+    1: FoodItem("Pizza", 200),
+    2: FoodItem("Burger", 100),
+    3: FoodItem("Pasta", 150)
+}
+
+order = Order()
+
+while True:
+    print("\n1. Show Menu\n2. Order Food\n3. Exit")
+    choice = int(input("Enter choice: "))
+
+    if choice == 1:
+        for key, item in menu.items():
+            print(f"{key}. {item.name} - {item.price}")
+
+    elif choice == 2:
+        item_no = int(input("Enter item number: "))
+        if item_no in menu:
+            order.add_item(menu[item_no])
+            print("Item added!")
+        else:
+            print("Invalid choice")
+
+    elif choice == 3:
+        order.show_bill()
+        break
+
+
+
+
+
+
+
+=============================
+class Movie:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+
+class Booking:
+    def __init__(self):
+        self.tickets = []
+
+    def book_ticket(self, movie, quantity):
+        self.tickets.append((movie, quantity))
+
+    def show_booking(self):
+        total = 0
+        print("\nBooking Details:")
+        for movie, qty in self.tickets:
+            cost = movie.price * qty
+            print(f"{movie.name} x {qty} = {cost}")
+            total += cost
+        print("Total Amount:", total)
+
+
+# Movies
+movies = {
+    1: Movie("Avengers", 250),
+    2: Movie("Batman", 200),
+    3: Movie("Spiderman", 220)
+}
+
+booking = Booking()
+
+while True:
+    print("\n1. Show Movies\n2. Book Ticket\n3. Exit")
+    choice = int(input("Enter choice: "))
+
+    if choice == 1:
+        for key, movie in movies.items():
+            print(f"{key}. {movie.name} - {movie.price}")
+
+    elif choice == 2:
+        m = int(input("Enter movie number: "))
+        qty = int(input("Enter quantity: "))
+        if m in movies:
+            booking.book_ticket(movies[m], qty)
+            print("Tickets booked!")
+        else:
+            print("Invalid movie")
+
+    elif choice == 3:
+        booking.show_booking()
+        break
+

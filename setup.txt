@@ -2,6 +2,6 @@
 2. Install Vscode
 3. Install Python Extension
 4. Install jupyter Extension
-5. Open Terminal : pip install notebook jupyter ipykernel
+5. Open Terminal :pip install notebook jupyter ipykernel
 
 python -m pip install notebook jupyter ipykernel
