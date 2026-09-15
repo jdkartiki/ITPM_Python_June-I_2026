@@ -1,0 +1,14 @@
+[
+    {
+        "user": "Admin",
+        "action": "Login",
+        "status": "Success",
+        "timestamp": "2026-05-08 14:29:56"
+    },
+    {
+        "user": "User1",
+        "action": "File Access",
+        "status": "Denied",
+        "timestamp": "2026-05-08 14:29:56"
+    }
+]
